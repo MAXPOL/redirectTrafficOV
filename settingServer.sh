@@ -23,7 +23,7 @@ then
 	continue;
 fi
 
-if [[ $passcert != 'n' && passcert != 'y' ]] 
+if [[ $passcert -ne 'n' && passcert -ne 'y' ]] 
 then 
 	clear
 	echo "NOT CORRECT DATA"
@@ -91,7 +91,7 @@ fi
 
 ./easyrsa sign-req client client
 mkdir /tmp/keys
-cp pki/issued/client1.crt pki/private/client1.key pki/dh.pem pki/ca.crt pki/ta.key /tmp/keys
+cp pki/issued/client.crt pki/private/client.key pki/dh.pem pki/ca.crt pki/ta.key /tmp/keys
 chmod -R a+r /tmp/keys
 
 echo "local $wanip" >> /etc/openvpn/server.conf
