@@ -6,29 +6,29 @@ read wanip
 echo "Enter password for CA cert: "
 read passwordcacert
 
-echo "You need password for cert ? (y/n)"
-read passcert
+#echo "You need password for cert ? (y/n)"
+#read passcert
 
-if [[ $passcert = 'y' ]] 
-then 
-	echo "Enter password for server cert: "
-	read servercert
+# if [[ $passcert = 'y' ]] 
+# then 
+#	echo "Enter password for server cert: "
+#	read servercert
+#
+#	echo "Enter password for client cert: "
+#	read clientcert
+# fi
 
-	echo "Enter password for client cert: "
-	read clientcert
-fi
-
-if [[ $passcert = 'n' ]] 
-then 
-	continue;
-fi
-
-if [[ $passcert -ne 'n' && passcert -ne 'y' ]] 
-then 
-	clear
-	echo "NOT CORRECT DATA"
-	exit 0
-fi
+#if [[ $passcert = 'n' ]] 
+#then 
+#	continue;
+#fi
+#
+#if [[ $passcert -ne 'n' && passcert -ne 'y' ]] 
+#then 
+#	clear
+#	echo "NOT CORRECT DATA"
+#	exit 0
+# fi
 
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 
@@ -60,12 +60,12 @@ echo "export KEY_ALTNAMES=\"UNKNOW\"" >> vars
 
 clear
 
-if [[ $servercert ]] 
-then 
-./easyrsa gen-req vpn-server
-else
+#if [[ $servercert ]] 
+#then 
+#./easyrsa gen-req vpn-server
+#else
 ./easyrsa gen-req vpn-server nopass
-fi
+#fi
 
 ./easyrsa sign-req server vpn-server
 openvpn --genkey --secret pki/ta.key
@@ -82,12 +82,12 @@ cd /usr/share/easy-rsa/3
 
 clear
 
-if [[ $clientcert ]] 
-then 
-./easyrsa gen-req client
-else
+#if [[ $clientcert ]] 
+#then 
+#./easyrsa gen-req client
+#else
 ./easyrsa gen-req client nopass
-fi
+#fi
 
 ./easyrsa sign-req client client
 mkdir /tmp/keys
