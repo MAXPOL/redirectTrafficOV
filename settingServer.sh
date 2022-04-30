@@ -1,34 +1,14 @@
 #!/bin/bash
 
-echo "Enter WAN ip_address you server: "
-read wanip
+#echo "Enter WAN ip_address you server: "
+#read wanip
+
+wanip=$(wget -qO- eth0.me) # Auto IP
+echo $wanip
+sleep 15
 
 echo "Enter password for CA cert: "
 read passwordcacert
-
-#echo "You need password for cert ? (y/n)"
-#read passcert
-
-# if [[ $passcert = 'y' ]] 
-# then 
-#	echo "Enter password for server cert: "
-#	read servercert
-#
-#	echo "Enter password for client cert: "
-#	read clientcert
-# fi
-
-#if [[ $passcert = 'n' ]] 
-#then 
-#	continue;
-#fi
-#
-#if [[ $passcert -ne 'n' && passcert -ne 'y' ]] 
-#then 
-#	clear
-#	echo "NOT CORRECT DATA"
-#	exit 0
-# fi
 
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 
