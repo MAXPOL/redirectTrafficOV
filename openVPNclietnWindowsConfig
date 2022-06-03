@@ -15,3 +15,5 @@ keepalive 10 120
 persist-key
 persist-tun
 verb 0
+auth-nocache
+remote-cert-tls server
