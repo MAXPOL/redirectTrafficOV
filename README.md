@@ -2,7 +2,7 @@
 
 For Windows client use GUI
 
-For linux cuse command:
+For linux use command:
 
 systemctl start openvpn-client@client.service
 
