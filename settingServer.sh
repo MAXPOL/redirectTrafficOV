@@ -12,11 +12,18 @@ read passwordcacert
 
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 
-systemctl enable firewalld
-systemctl start firewalld
-firewall-cmd --permanent --add-port=443/udp
-firewall-cmd --permanent --zone=public --add-port=80/tcp
-firewall-cmd --reload
+# Comment or uncomment needs strings (depends from you firewall) 
+
+#systemctl enable firewalld
+#systemctl start firewalld
+#firewall-cmd --permanent --add-port=443/udp
+#firewall-cmd --permanent --zone=public --add-port=80/tcp
+#firewall-cmd --reload
+
+iptables -I INPUT -p tcp --dport 80 -j ACCEPT
+iptables -I INPUT -p tcp --dport 443 -j ACCEPT
+iptables -I INPUT -p udp --dport 80 -j ACCEPT
+iptables -I INPUT -p udp --dport 443 -j ACCEPT
 
 yum install epel-release nano wget httpd -y
 yum install openvpn easy-rsa dnsmasq -y
