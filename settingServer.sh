@@ -117,12 +117,22 @@ echo 1 > /proc/sys/net/ipv4/ip_forward #Activete Redirect traffic beetwen interf
 chmod +x /etc/rc.local
 chmod 0777 /etc/rc.local
 
-firewall-cmd --direct --permanent --add-rule ipv4 filter FORWARD 0 -i eth0 -o tun0 -j ACCEPT
-firewall-cmd --direct --permanent --add-rule ipv4 filter FORWARD 0 -i tun0 -o eth0 -j ACCEPT
-firewall-cmd --permanent --zone=dmz --add-masquerade
-firewall-cmd --permanent --add-masquerade
-firewall-cmd --permanent --direct --add-rule ipv4 nat POSTROUTING 0 -o eth0 -j MASQUERADE
-firewall-cmd --direct --permanent --add-rule ipv4 filter FORWARD 0 -i eth0 -o tun0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+#firewall-cmd --direct --permanent --add-rule ipv4 filter FORWARD 0 -i eth0 -o tun0 -j ACCEPT
+#firewall-cmd --direct --permanent --add-rule ipv4 filter FORWARD 0 -i tun0 -o eth0 -j ACCEPT
+#firewall-cmd --permanent --zone=dmz --add-masquerade
+#firewall-cmd --permanent --add-masquerade
+#firewall-cmd --permanent --direct --add-rule ipv4 nat POSTROUTING 0 -o eth0 -j MASQUERADE
+#firewall-cmd --direct --permanent --add-rule ipv4 filter FORWARD 0 -i eth0 -o tun0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+iptables -I INPUT -i eth0 -m state --state NEW -p udp --dport 1194 -j ACCEPT
+iptables -I FORWARD -i tun+ -j ACCEPT  
+iptables -I FORWARD -i tun+ -o eth0 -m state --state RELATED,ESTABLISHED -j ACCEPT  
+iptables -I FORWARD -i eth0 -o tun+ -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE
+iptables -A OUTPUT -o tun+ -j ACCEPT
+
+
+
 echo "service dnsmasq start" >> /etc/rc.local
 
 mkdir /var/www/html/keys
