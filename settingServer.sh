@@ -1,5 +1,9 @@
 #!/bin/bash
 
+clear
+yum install epel-release nano wget httpd -y
+clear
+
 #echo "Enter WAN ip_address you server: "
 #read wanip
 
@@ -25,7 +29,6 @@ iptables -I INPUT -p tcp --dport 443 -j ACCEPT
 iptables -I INPUT -p udp --dport 80 -j ACCEPT
 iptables -I INPUT -p udp --dport 443 -j ACCEPT
 
-yum install epel-release nano wget httpd -y
 yum install openvpn easy-rsa dnsmasq -y
 
 cd /usr/share/easy-rsa/3
