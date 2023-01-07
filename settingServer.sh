@@ -127,7 +127,7 @@ chmod 0777 /etc/rc.local
 #firewall-cmd --permanent --direct --add-rule ipv4 nat POSTROUTING 0 -o eth0 -j MASQUERADE
 #firewall-cmd --direct --permanent --add-rule ipv4 filter FORWARD 0 -i eth0 -o tun0 -m state --state RELATED,ESTABLISHED -j ACCEPT
 
-iptables -I INPUT -i eth0 -m state --state NEW -p udp --dport 1194 -j ACCEPT
+iptables -I INPUT -i eth0 -m state --state NEW -p udp --dport 443 -j ACCEPT
 iptables -I FORWARD -i tun+ -j ACCEPT  
 iptables -I FORWARD -i tun+ -o eth0 -m state --state RELATED,ESTABLISHED -j ACCEPT  
 iptables -I FORWARD -i eth0 -o tun+ -m state --state RELATED,ESTABLISHED -j ACCEPT
