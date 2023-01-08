@@ -143,6 +143,9 @@ cp -rf /tmp/keys/* /var/www/html/keys
 cd /var/www/html
 tar -cvf keys.tar.gz keys
 cp keys.tar.gz keys/
+
+cd  /var/www/html/keys
+tar -cvf client.tar.gz client.*
 systemctl start httpd
 
 clear
