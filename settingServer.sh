@@ -150,8 +150,9 @@ systemctl start httpd
 
 clear
 
-echo "Please download you key pack, in browser: http://ip_server/keys/keys.tar.gz"
-echo "After reboot web server will disable"
+echo "Please download you key pack, in browser: http://"$wanip"/keys/keys.tar.gz"
+echo "Please download you key pack for newClient, in browser: http://"$wanip"/keys/client.tar.gz"
+echo "After reboot web server will disable and server reboot"
 echo "Warning: You have ONE minute for download"
 
 secs=$((5 * 12))
