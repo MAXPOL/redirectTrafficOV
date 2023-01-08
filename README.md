@@ -1,5 +1,18 @@
 # redirectTrafficOV
 
+SERVER
+
+______
+
+systemctl start openvpn@server
+
+systemctl status openvpn@server
+
+systemctl enable openvpn@server
+
+CLIENT
+_______
+
 For Windows client use GUI
 
 For linux use command:
