@@ -86,7 +86,7 @@ chmod -R a+r /tmp/keys
 
 echo "local $wanip" >> /etc/openvpn/server.conf
 echo "port 443" >> /etc/openvpn/server.conf
-echo "proto udp" >> /etc/openvpn/server.conf
+echo "proto udp4" >> /etc/openvpn/server.conf
 echo "dev tun" >> /etc/openvpn/server.conf
 echo "ca keys/ca.crt" >> /etc/openvpn/server.conf
 echo "cert keys/issued/vpn-server.crt" >> /etc/openvpn/server.conf
