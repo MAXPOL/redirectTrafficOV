@@ -11,8 +11,8 @@ wanip=$(wget -qO- eth0.me) # Auto IP
 echo $wanip
 sleep 15
 
-echo "Enter password for CA cert: "
-read passwordcacert
+#echo "Enter password for CA cert: "
+#read passwordcacert
 
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 
